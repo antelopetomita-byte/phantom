@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Phantom かんたんマニュアル</title>
+<style>
+  :root{
+    --void:#07080b; --ink:#0d0f14; --line:#1b2026; --fade:#8a93a0;
+    --ghost:#eef2f6; --spectral:#2fe7a8; --amber:#ffcf5c; --red:#ff8f8f;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  body{margin:0;background:var(--void);color:var(--ghost);
+    font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN","Inter",sans-serif;
+    line-height:1.85;padding:0 0 90px;font-size:16px}
+  .wrap{max-width:720px;margin:0 auto;padding:0 22px}
+  header{padding:56px 22px 32px;text-align:center;border-bottom:1px solid var(--line);
+    background:radial-gradient(900px 320px at 50% -30%,rgba(47,231,168,.14),transparent)}
+  .logo{width:64px;height:64px;border-radius:18px;background:linear-gradient(160deg,#0d1116,#05070a);
+    border:1px solid var(--line);display:grid;place-items:center;margin:0 auto 14px;font-size:32px;
+    box-shadow:0 0 40px rgba(47,231,168,.15)}
+  .tag{font-family:"Courier New",monospace;font-size:11px;letter-spacing:.3em;color:var(--spectral);text-transform:uppercase}
+  h1{font-size:30px;margin:10px 0 8px;letter-spacing:-.01em}
+  .sub{color:var(--fade);font-size:15px;max-width:520px;margin:0 auto}
+  h2{font-size:22px;margin:44px 0 4px;display:flex;align-items:center;gap:10px}
+  h2 .n{display:inline-grid;place-items:center;width:32px;height:32px;border-radius:10px;
+    background:var(--spectral);color:#04130d;font-size:16px;font-weight:800;flex:none}
+  h3{font-size:17px;margin:26px 0 6px;color:var(--ghost)}
+  p{margin:8px 0}
+  .lead{color:var(--fade);font-size:14.5px;margin:2px 0 8px}
+  section{padding-top:6px}
+  .step{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:var(--ink);margin:12px 0;position:relative}
+  .step b{color:#fff}
+  .step .num{font-family:"Courier New",monospace;color:var(--spectral);font-size:13px;font-weight:700;letter-spacing:.1em}
+  .chip{display:inline-block;background:rgba(47,231,168,.12);border:1px solid rgba(47,231,168,.3);
+    color:var(--spectral);border-radius:8px;padding:1px 9px;font-size:14px;font-weight:600;margin:0 2px;white-space:nowrap}
+  .key{display:inline-block;background:#11151b;border:1px solid var(--line);border-radius:7px;
+    padding:1px 8px;font-size:14px;font-family:"Courier New",monospace}
+  .card{border:1px solid var(--line);border-radius:16px;padding:16px 18px;background:var(--ink);margin:14px 0}
+  .good{border-left:3px solid var(--spectral)}
+  .warn{border-left:3px solid var(--amber)}
+  .danger{border-left:3px solid var(--red)}
+  ul.clean,ol.clean{padding-left:0;margin:8px 0;list-style:none}
+  ul.clean li{padding-left:24px;position:relative;margin:9px 0}
+  ul.clean li:before{content:"›";position:absolute;left:8px;color:var(--spectral);font-weight:700}
+  ol.num{counter-reset:s;padding-left:0;list-style:none;margin:10px 0}
+  ol.num li{counter-increment:s;padding-left:40px;position:relative;margin:12px 0}
+  ol.num li:before{content:counter(s);position:absolute;left:0;top:-2px;width:28px;height:28px;
+    border-radius:9px;background:var(--spectral);color:#04130d;display:grid;place-items:center;font-weight:800;font-size:14px}
+  .faq{border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden;background:var(--ink)}
+  .faq summary{padding:14px 18px;cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary:after{content:"+";color:var(--spectral);font-size:20px;font-weight:400}
+  .faq[open] summary:after{content:"−"}
+  .faq .body{padding:0 18px 16px;color:#d4dae1;font-size:14.5px}
+  .ttl-list{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+  .ttl-list .row{display:flex;gap:12px;align-items:baseline;border:1px solid var(--line);border-radius:12px;padding:10px 14px;background:var(--ink)}
+  .ttl-list .row .lbl{color:var(--spectral);font-weight:700;min-width:96px;flex:none}
+  .big-btn{display:block;text-align:center;background:var(--spectral);color:#04130d;font-weight:800;
+    text-decoration:none;padding:16px;border-radius:14px;margin:18px 0;font-size:17px}
+  .foot{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--fade);font-size:12.5px;text-align:center}
+  b{font-weight:700}
+  .em{color:var(--spectral);font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">📡</div>
+  <div class="tag">Simple Manual</div>
+  <h1>Phantom かんたんマニュアル</h1>
+  <p class="sub">はじめての人でも、これを読めば使えます。電話番号なし・登録なしで、消えるメッセージを送れるアプリです。</p>
+</header>
+
+<div class="wrap">
+
+  <section>
+    <h2><span class="n">?</span>Phantomってなに？</h2>
+    <p>ひとことで言うと <b class="em">「電話番号がいらない、消える暗号メッセージアプリ（レーダーの外へ）」</b> です。</p>
+    <ul class="clean">
+      <li><b>電話番号もメールも不要。</b> アプリを開くだけで自分専用のIDができます。</li>
+      <li><b>メッセージは自動で消えます。</b> 読んだあと一定時間で消えるので、記録が残りません。</li>
+      <li><b>中身は暗号化。</b> 送った本人と相手だけが読めて、運営も第三者も中身を見られません。</li>
+      <li><b>アプリのインストール不要（ほぼ）。</b> スマホのブラウザで開いて「ホーム画面に追加」するだけ。</li>
+    </ul>
+    <div class="card warn"><b>使う前に知っておくこと</b><br>Phantomは友達も一緒に使うことで成り立ちます。相手も同じようにPhantomを開いて、あなたと「つながる」必要があります（やり方は後で説明します）。</div>
+  </section>
+
+  <section>
+    <h2><span class="n">1</span>はじめる（アカウントを作る）</h2>
+    <p class="lead">所要時間30秒。名前も番号もいりません。</p>
+    <ol class="num">
+      <li>スマホのブラウザ（iPhoneは<b>Safari</b>、Androidは<b>Chrome</b>）で Phantom のリンクを開く</li>
+      <li>最初の画面で <span class="chip">ENTER</span> を押す</li>
+      <li><span class="chip">新規作成</span> を選ぶ</li>
+      <li>ニックネームは<b>入れても入れなくてもOK</b>（空ならIDが表示名になります）</li>
+      <li>パスワードを決める（別の端末で同じIDを使うときに必要）</li>
+      <li>これで完了。あなた専用の <span class="key">phantom_〇〇〇</span> というIDができます</li>
+    </ol>
+    <div class="card danger"><b>大切：IDとパスワードは控えておく</b><br>このIDとパスワードは、スマホを変えたり入れ直したときに<b>同じ自分に戻るための唯一の鍵</b>です。忘れると同じアカウントに戻れません（新しい別人になります）。設定画面で確認できます。</div>
+  </section>
+
+  <section>
+    <h2><span class="n">2</span>アプリとして使えるようにする</h2>
+    <p class="lead">ホーム画面に置くと、普通のアプリのように使えて通知も受け取れます。</p>
+    <h3>iPhone（Safari）</h3>
+    <ol class="num">
+      <li>Phantomを開いた状態で、画面下の<b>共有ボタン</b>（□に↑）を押す</li>
+      <li>メニューから <span class="chip">ホーム画面に追加</span> を選ぶ</li>
+      <li>ホーム画面にできたアイコンから起動する</li>
+    </ol>
+    <h3>Android（Chrome）</h3>
+    <ol class="num">
+      <li>Phantomを開いた状態で、右上の<b>⋮メニュー</b>を押す</li>
+      <li><span class="chip">アプリをインストール</span>（または「ホーム画面に追加」）を選ぶ</li>
+      <li>できたアイコンから起動する</li>
+    </ol>
+    <div class="card warn"><b>ヒント：</b>LINEやSNSの中のブラウザで開くとうまくいきません。必ず<b>SafariかChrome</b>で開いてください。</div>
+  </section>
+
+  <section>
+    <h2><span class="n">3</span>友達とつながる</h2>
+    <p class="lead">Phantomは「招待リンク」か「QRコード」でつながります。電話番号での検索はありません（それが安全のポイント）。</p>
+    <h3>あなたが招待する側のとき</h3>
+    <ol class="num">
+      <li>設定（⚙️）を開く</li>
+      <li><span class="chip">招待リンク / QR を開く</span> を押す</li>
+      <li>出てきた<b>リンクを相手に送る</b>（LINEやメールで）／または<b>QRコードを相手に見せる</b></li>
+      <li>相手がそれを開いて「つなぐ」と、お互いの一覧に表示されます</li>
+    </ol>
+    <h3>あなたが招待される側のとき</h3>
+    <ol class="num">
+      <li>相手から届いた<b>招待リンクを開く</b>／またはQRコードを読み取る</li>
+      <li>画面の案内にそって<b>つなぐ</b></li>
+      <li>これで相手とつながり、メッセージが送れます</li>
+    </ol>
+    <div class="card good"><b>つながると：</b>相手の名前が一覧に出て、タップすると会話が開きます。ヘッダーに <span class="chip">🔒 暗号化された会話</span> と出ていれば、安全に使える状態です。</div>
+  </section>
+
+  <section>
+    <h2><span class="n">4</span>メッセージを送る</h2>
+    <ol class="num">
+      <li>一覧から相手を選んで会話を開く</li>
+      <li>下の入力欄に文字を打つ（😊ボタンで絵文字も入れられます）</li>
+      <li><b>消えるまでの時間</b>を選ぶ（入力欄の上のボタン。下の表を参照）</li>
+      <li>紙飛行機ボタン（▶）で送信</li>
+    </ol>
+    <h3>「消えるまでの時間」の選び方</h3>
+    <div class="ttl-list">
+      <div class="row"><span class="lbl">残す</span><span>消えません。ずっと残ります。</span></div>
+      <div class="row"><span class="lbl">既読後24h</span><span>相手が読んでから24時間後に消えます（おすすめの標準）。</span></div>
+      <div class="row"><span class="lbl">既読後</span><span>相手が読んですぐ消えます。</span></div>
+      <div class="row"><span class="lbl">10秒〜10分</span><span>送ってから決めた時間で消えます。</span></div>
+    </div>
+    <h3>できること</h3>
+    <ul class="clean">
+      <li><b>写真を送る：</b>入力欄の左の画像ボタンから。写真も暗号化されます。</li>
+      <li><b>リアクション：</b>メッセージを<b>長押し</b>すると 👍❤️😂 などを付けられます。</li>
+      <li><b>取り消し／削除：</b>自分のメッセージを長押しすると削除できます。</li>
+      <li><b>通話：</b>会話の上の電話マークで音声通話（お互いPhantom同士・無料）。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><span class="n">5</span>通知を受け取る</h2>
+    <ol class="num">
+      <li>設定（⚙️）を開く</li>
+      <li><b>通知（バナー＋未読バッジ）</b>の横のボタンを <span class="chip">オン</span>（緑）にする</li>
+      <li>「通知を許可しますか？」と聞かれたら<b>許可</b></li>
+      <li>ちゃんと出るか不安なら <span class="chip">通知テスト</span> ボタンで確認できます</li>
+    </ol>
+    <div class="card warn"><b>iPhoneの注意：</b>iPhoneのホーム画面アプリの通知は、Appleの仕様で<b>ときどき遅れたり届かないことがあります</b>（アプリの不具合ではありません）。メッセージはアプリを開けば必ず読めます。Androidの方が通知は安定して届きます。</div>
+  </section>
+
+  <section>
+    <h2><span class="n">?</span>よくある質問（FAQ）</h2>
+
+    <details class="faq"><summary>お金はかかりますか？</summary>
+      <div class="body">無料です。メッセージも通話もデータ通信を使うだけで、通話料などはかかりません。</div></details>
+
+    <details class="faq"><summary>電話番号やメールは必要ですか？</summary>
+      <div class="body">不要です。アプリを開くだけでIDができます。だから身元がバレにくいのが特徴です。</div></details>
+
+    <details class="faq"><summary>相手がAndroid（またはiPhone）でも使えますか？</summary>
+      <div class="body">使えます。iPhoneでもAndroidでも、同じPhantomを開いて招待リンクでつながるだけです。相手のスマホの種類は関係ありません。</div></details>
+
+    <details class="faq"><summary>「🔒 復号できません」と出ました。</summary>
+      <div class="body">相手が一度アカウントを作り直したなどで、古い暗号の鍵が合わなくなったサインです。その相手との連絡先をお互いに削除して、招待リンクで<b>つなぎ直す</b>と直ります。なお、鍵が合わなくなった昔のメッセージは元に戻せません（安全のため）。</div></details>
+
+    <details class="faq"><summary>メッセージが相手に届かない／読めない。</summary>
+      <div class="body">多くの場合、上と同じ「つなぎ直し」で解決します。両方とも最新版にして（開くだけで自動更新されます）、連絡先を削除してから招待し直してください。</div></details>
+
+    <details class="faq"><summary>アプリを更新するには？</summary>
+      <div class="body">何もしなくてOKです。開くたびに自動で最新版になります。入れ直しは不要です。</div></details>
+
+    <details class="faq"><summary>スマホを変えたら、同じIDは使えますか？</summary>
+      <div class="body">使えます。新しい端末で最初の画面から <span class="chip">ログイン</span> を選び、控えておいた<b>Phantom IDとパスワード</b>を入れてください。「新規作成」を選ぶと別人になってしまうので注意。</div></details>
+
+    <details class="faq"><summary>本当に安全ですか？</summary>
+      <div class="body">メッセージ・グループ・通話はすべて暗号化され、運営も中身を見られません。ただし個人開発のため、Signalのような第三者の専門監査は受けていません。命に関わる極秘の連絡には、監査済みのSignalなどを併用してください。ふだんのプライベートな会話には十分な強さです。</div></details>
+
+    <details class="faq"><summary>スクリーンショットは防げますか？</summary>
+      <div class="body">どのアプリでも、相手が画面を撮影・保存することは技術的に完全には防げません。「消える」のはあくまでアプリ内での話、と考えてください。</div></details>
+  </section>
+
+  <section>
+    <h2><span class="n">✓</span>こまったときの早見表</h2>
+    <div class="card">
+      <ul class="clean">
+        <li><b>読めない／届かない</b> → 両方最新版に（自動）→ 連絡先を削除 → 招待し直す</li>
+        <li><b>通知が来ない</b> → 設定で通知を<span class="chip">オン</span> → <span class="chip">通知テスト</span>で確認（iPhoneは元々届きにくい）</li>
+        <li><b>画面が古いまま</b> → アプリを一度閉じて開き直す</li>
+        <li><b>別のスマホで使いたい</b> → <span class="chip">ログイン</span>からID＋パスワードで</li>
+        <li><b>つながらない</b> → SafariかChromeで開いているか確認（SNS内ブラウザは不可）</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="foot">
+    Phantom かんたんマニュアル<br>
+    消えるメッセージ・電話番号不要・端末間で暗号化<br>
+    ※ より詳しい技術仕様は「図解仕様書」を、他アプリとの比較は「セキュリティ比較」をご覧ください。
+  </div>
+</div>
+</body>
+</html>
