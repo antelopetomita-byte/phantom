@@ -832,7 +832,7 @@ function updateNotifBtn(){
   else { b.textContent='オフ'; b.classList.remove('on'); if(h) h.textContent='通知はオフです。タップするとオンにできます。'; }
 }
 /* ---- Web Push (closed-state notifications) ---- */
-const VAPID_PUBLIC='BFQeXKQ8YEAyejYtN_zgGwm6xSLLeEAvK8XkBQ3E88yCll-5laUEhR-exB7T9zl5w4icxHNi6w5YFZP_zGgiP1I';
+const VAPID_PUBLIC='BA9WdM6AL7XBFvpXL4V9bTY8yDPHnRsvPpCuVnQ7Dj7HSLsh77WwQnAtytKWSYXSDCUrYEe3HLgrsWqhfvG77so';
 let NOTIFY_URL='';  // Phantom: no push backend yet (set Vercel endpoint later)
 function urlB64ToU8(b64){ const pad='='.repeat((4-b64.length%4)%4); const s=(b64+pad).replace(/-/g,'+').replace(/_/g,'/'); const raw=atob(s); const u=new Uint8Array(raw.length); for(let i=0;i<raw.length;i++) u[i]=raw.charCodeAt(i); return u; }
 async function registerPush(){
