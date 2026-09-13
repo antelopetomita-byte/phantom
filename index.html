@@ -385,17 +385,15 @@
   <section id="splash" class="screen active">
     <canvas id="ambient"></canvas>
     <div class="inner">
-      <svg id="splashIcon" width="132" height="132" viewBox="0 0 132 132" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 26px rgba(47,231,168,.45))">
-  <circle cx="66" cy="66" r="60" stroke="#2fe7a8" stroke-opacity=".25" stroke-width="1.5"/>
-  <circle cx="66" cy="66" r="42" stroke="#2fe7a8" stroke-opacity=".35" stroke-width="1.5"/>
-  <circle cx="66" cy="66" r="24" stroke="#2fe7a8" stroke-opacity=".5" stroke-width="1.5"/>
-  <circle cx="66" cy="66" r="3.5" fill="#2fe7a8"/>
-  <line x1="66" y1="66" x2="66" y2="6" stroke="#2fe7a8" stroke-opacity=".18" stroke-width="1.5"/>
-  <line x1="66" y1="66" x2="126" y2="66" stroke="#2fe7a8" stroke-opacity=".18" stroke-width="1.5"/>
-  <path d="M66 66 L66 8 A58 58 0 0 1 118 52 Z" fill="#2fe7a8" fill-opacity=".16"/>
-  <line x1="66" y1="66" x2="118" y2="34" stroke="#2fe7a8" stroke-width="2.5" stroke-linecap="round"/>
-  <circle cx="99" cy="45" r="4.5" fill="#2fe7a8"/>
-  <circle cx="99" cy="45" r="9" fill="#2fe7a8" fill-opacity=".25"/>
+      <svg id="splashIcon" width="132" height="132" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter:drop-shadow(0 0 30px rgba(47,231,168,.45))">
+  <defs><radialGradient id="spg" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2fe7a8" stop-opacity=".3"/><stop offset="1" stop-color="#2fe7a8" stop-opacity="0"/></radialGradient></defs>
+  <circle cx="256" cy="256" r="180" fill="url(#spg)"/>
+  <g stroke="#2fe7a8" stroke-opacity=".16" stroke-width="5">
+    <line x1="96" y1="180" x2="416" y2="180"/><line x1="96" y1="256" x2="416" y2="256"/><line x1="96" y1="332" x2="416" y2="332"/>
+  </g>
+  <path d="M256 120 L392 372 L256 320 L120 372 Z" fill="#2fe7a8"/>
+  <path d="M256 168 L344 348 L256 312 L168 348 Z" fill="#07080b" fill-opacity=".55"/>
+  <circle cx="256" cy="300" r="12" fill="#2fe7a8"/>
 </svg>
       <p class="tagline">Messages fade · Privacy stays</p>
       <button id="enterBtn" type="button">ENTER</button>
