@@ -8,6 +8,16 @@ let initErr = null;
 let db = null;
 let ready = false;
 
+function cleanKey(v) {
+  let s = String(v || '');
+  s = s.replace(/[\s\r\n]+/g, '');      // remove any whitespace/newlines
+  if (s.startsWith('"') && s.endsWith('"')) s = s.slice(1, -1);
+  s = s.replace(/^'+|'+$/g, '');
+  s = s.replace(/=+$/g, '');             // base64url has no padding
+  s = s.replace(/\+/g, '-').replace(/\//g, '_');  // ensure URL-safe alphabet
+  return s;
+}
+
 function envReport() {
   const k = process.env.FB_PRIVATE_KEY || '';
   return {
@@ -20,7 +30,13 @@ function envReport() {
     FB_PRIVATE_KEY_has_real_newlines: k.includes('\n'),
     FB_PRIVATE_KEY_wrapped_in_quotes: k.trim().startsWith('"') || k.trim().endsWith('"'),
     VAPID_PUBLIC: !!process.env.VAPID_PUBLIC,
+    VAPID_PUBLIC_len_raw: (process.env.VAPID_PUBLIC || '').length,
+    VAPID_PUBLIC_len_clean: cleanKey(process.env.VAPID_PUBLIC).length,
+    VAPID_PUBLIC_head: cleanKey(process.env.VAPID_PUBLIC).slice(0, 8),
+    VAPID_PUBLIC_tail: cleanKey(process.env.VAPID_PUBLIC).slice(-6),
     VAPID_PRIVATE: !!process.env.VAPID_PRIVATE,
+    VAPID_PRIVATE_len_raw: (process.env.VAPID_PRIVATE || '').length,
+    VAPID_PRIVATE_len_clean: cleanKey(process.env.VAPID_PRIVATE).length,
     VAPID_SUBJECT: process.env.VAPID_SUBJECT || '(unset)',
   };
 }
@@ -50,10 +66,12 @@ function ensureInit() {
     db = admin.firestore();
 
     if (!process.env.VAPID_PUBLIC || !process.env.VAPID_PRIVATE) throw new Error('VAPID keys missing');
+    const vpub = cleanKey(process.env.VAPID_PUBLIC);
+    const vpriv = cleanKey(process.env.VAPID_PRIVATE);
     webpush.setVapidDetails(
-      process.env.VAPID_SUBJECT || 'mailto:admin@phantom.app',
-      process.env.VAPID_PUBLIC,
-      process.env.VAPID_PRIVATE
+      (process.env.VAPID_SUBJECT || 'mailto:admin@phantom.app').trim(),
+      vpub,
+      vpriv
     );
     ready = true;
   } catch (e) {
